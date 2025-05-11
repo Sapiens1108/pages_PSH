@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Galerie Interactive des Prompts Pédagogiques STMG (1ère)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .phase-gallery-card {
+            background-color: #f9fafb; /* Tailwind gray-50 */
+            border-left-width: 4px;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem; /* Marge plus grande entre les phases */
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .phase-gallery-card:hover {
+            box-shadow: 0 6px 10px -1px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .prompt-entry {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .prompt-trigger {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            color: #1f2937; /* Tailwind gray-800 */
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0.375rem 0.375rem 0 0; /* Coins arrondis en haut seulement */
+        }
+        .prompt-trigger:hover {
+            background-color: #e5e7eb; /* Tailwind gray-200 */
+        }
+        .prompt-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out; /* Transition plus douce et pour le padding */
+            padding: 0 1rem; /* Pas de padding vertical quand fermé */
+            background-color: #ffffff;
+             border-radius: 0 0 0.375rem 0.375rem; /* Coins arrondis en bas seulement */
+        }
+        .prompt-content.open {
+            max-height: 5000px; /* Hauteur suffisante pour les prompts longs */
+            padding: 1rem; /* Padding quand ouvert */
+        }
+        .prompt-text-display {
+            background-color: #f0f2f5; /* Gris clair pour le fond du prompt */
+            border: 1px solid #d1d5db; /* Bordure grise */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #374151; /* Texte du prompt un peu plus foncé */
+        }
+        .prompt-details {
+            margin-top: 0.5rem;
+            font-size: 0.95em;
+        }
+        .prompt-details strong {
+            color: #1e3a8a; /* Bleu foncé pour les titres "Objectif" et "Résultat" */
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3b82f6;
+        }
+        .page-header {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* bold */
+            color: #1d4ed8; /* Tailwind blue-700 */
+            margin-bottom: 0.5rem;
+        }
+        .page-subtitle {
+            font-size: 1.125rem; /* text-lg */
+            color: #4b5563; /* Tailwind gray-600 */
+            margin-bottom: 2rem;
+        }
+        .phase-main-title {
+             font-size: 1.375rem; /* Entre text-xl et text-2xl */
+             font-weight: 600;
+             color: #065f46; /* Vert émeraude foncé Tailwind (emerald-800) */
+             padding: 0.75rem 0;
+             border-top: 1px dashed #6ee7b7; /* Vert émeraude clair */
+             border-bottom: 1px dashed #6ee7b7;
+             margin-top: 1.5rem;
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4 md:p-8">
+<div class="container mx-auto max-w-5xl bg-white shadow-2xl rounded-xl p-6 md:p-10">
+<header class="text-center mb-10">
+<h1 class="page-header">Galerie Interactive des Prompts Pédagogiques STMG (1ère)</h1>
+<p class="page-subtitle">Explorez chaque prompt détaillé, organisé par phase du cycle d'apprentissage.</p>
+</header>
+<section class="phase-gallery-card border-green-600">
+<h3 class="phase-main-title flex items-center"><i class="fas fa-drafting-compass mr-3 text-green-700"></i>Phase 1 : Planification et Conception Pédagogique (Enseignant)</h3>
+<div class="mt-4" id="phase1-prompts"> <div class="prompt-entry">
+<button class="prompt-trigger">
+<span>1. Prompt 1 : Construction d'un Prompt Complet (Les 6 éléments) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content"> <pre class="prompt-text-display">Agis en tant que spécialiste en pédagogie des Sciences de Gestion et Numérique (SGN) pour le niveau Première STMG. Tu es chargé de concevoir des ressources pour aider les enseignants à introduire le concept d' 'organisation du travail' au sein d'une entreprise.
+Ta tâche est de produire un plan de séquence détaillé et clé en main pour aborder ce concept.
+
+Utilise les 6 éléments suivants pour structurer ta réponse :
+
+1.  **Rôle que TU (l'IA) dois jouer** : "Je suis un concepteur pédagogique spécialisé en SGN pour la Première STMG, et je vais proposer un plan de séquence sur l'organisation du travail, en mettant l'accent sur l'observation et l'analyse de situations concrètes."
+
+2.  **Tâche que TU (l'IA) dois réaliser** : "Je vais élaborer un plan de séquence détaillé pour le chapitre 'Comment le travail est-il organisé dans l'entreprise ?' du programme de SGN de Première STMG. Ce plan visera à faire comprendre aux élèves les différentes formes d'organisation du travail (ex: par fonction, par projet, en équipes autonomes), leurs avantages et inconvénients, et leur impact sur les conditions de travail et la performance."
+
+3.  **Contexte de la réponse** : "La séquence est prévue pour 3 séances de 1h30 chacune (total 4h30). Elle doit débuter par une phase d'observation (ex: analyse de témoignages vidéo de salariés, étude de cas d'une PME locale), suivie d'une phase de conceptualisation, et se terminer par une mini-simulation ou une étude comparative simple d'organisations du travail différentes (ex: une startup vs une administration)."
+
+4.  **Contraintes spécifiques à respecter** : "Je dois prioriser des exemples d'entreprises et de métiers facilement identifiables par des élèves de Première STMG (éviter les structures trop complexes ou abstraites). Les activités doivent favoriser la participation active des élèves (travaux de groupe, échanges). Je dois prévoir des supports variés (vidéos courtes, organigrammes simplifiés, témoignages écrits). Je dois intégrer des éléments de différenciation pour prendre en compte l'hétérogénéité des élèves, par exemple en proposant des rôles différents dans les travaux de groupe ou des documents supports de complexité variable. Je dois m'assurer que le vocabulaire utilisé est précis mais expliqué (ex: polyvalence, spécialisation, hiérarchie)."
+
+5.  **Forme de la réponse attendue** : "Ma réponse sera un tableau structuré en 4 colonnes : 'Séance (Numéro et Titre)', 'Objectifs d'Apprentissage (issus du programme de SGN et formulés avec des verbes d'action)', 'Activités Principales et Déroulement Détaillé (incluant timing indicatif, consignes pour les élèves, et matériel/supports nécessaires)', 'Modalités d'Évaluation Formative et Pistes de Différenciation'."
+
+6.  **Exemple d'Affinement possible pour une séance (pour illustrer comment l'enseignant pourrait te demander plus)** : "Pour la séance sur l'analyse de témoignages vidéo, je pourrais être amené à créer une grille d'écoute active simple (3-4 questions clés) que les élèves utiliseraient pour structurer leurs observations et identifier le type d'organisation du travail décrit et son impact sur le salarié."
+
+Produis maintenant le plan de séquence complet en respectant scrupuleusement ces 6 éléments.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Permettre à l'enseignant de structurer une demande très précise à l'IA pour créer une séquence pédagogique complète sur l'organisation du travail en SGN.</p>
+<p><strong>Résultat Attendu :</strong> Un plan de séquence détaillé et clé en main, généré par l'IA, respectant les 6 éléments définis, prêt à être adapté ou utilisé par l'enseignant.</p>
+</div>
+</div>
+</div>
+<div class="prompt-entry">
+<button class="prompt-trigger">
+<span>2. Prompt 2 : Conception d'une Séquence Pédagogique via Méta-Prompt - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un ingénieur pédagogique chevronné, spécialisé dans la création de séquences d'apprentissage interactives pour l'enseignement de 'Droit et Grands Enjeux du Monde Contemporain' (DGEMC) en Première STMG.
+Ta mission est de créer une séquence pédagogique complète de 3 séances de 1h30 (total 4h30) sur le thème : "L'égalité : principes juridiques et réalités sociales en France".
+Cette séquence doit permettre aux élèves de Première STMG de :
+* **Objectif Général 1 (Savoirs)** : Comprendre le principe d'égalité en droit français (égalité devant la loi, égalité des chances) et identifier ses différentes dimensions (civile, sociale, économique) ainsi que ses limites et les discriminations persistantes.
+* **Objectif Général 2 (Savoir-faire)** : Analyser des situations concrètes (ex: extraits de décisions de justice simplifiées, articles de presse, témoignages) pour identifier des manifestations d'égalité, d'inégalité ou de discrimination.
+* **Objectif Général 3 (Savoir-être)** : Développer un esprit critique sur les enjeux de l'égalité et être capable de débattre de manière argumentée sur les moyens de la promouvoir.
+
+**Contraintes Impératives pour la Séquence :**
+* **Niveau et Public** : Première STMG, en tenant compte de leur maturité et de leurs connaissances préalables (qui peuvent être limitées sur les concepts juridiques pointus). Utiliser un langage clair, définir systématiquement les termes techniques.
+* **Approche Pédagogique** : Privilégier une pédagogie active et inductive. Partir de cas concrets, de vidéos courtes (ex: témoignages, extraits de documentaires sur les inégalités), ou de mises en situation simples pour amener les concepts.
+* **Actualité** : Intégrer au moins un exemple d'actualité récente (moins d'un an) illustrant un débat sur l'égalité en France.
+* **Différenciation** : Proposer pour au moins une activité des pistes pour adapter le support ou la tâche pour des élèves plus en difficulté (ex: questionnaire guidé) ou pour des élèves plus avancés (ex: recherche complémentaire sur une jurisprudence spécifique).
+* **Outils Numériques** : Suggérer l'utilisation d'au moins un outil numérique simple (ex: outil de création de nuage de mots collaboratif, quiz interactif en ligne, visionnage de courtes vidéos).
+
+**Structure Détaillée Attendue pour Chaque Séance (à présenter sous forme de fiches de séance distinctes) :**
+
+**Séance 1 : Le principe d'égalité en droit : fondements et dimensions**
+* *Objectifs Spécifiques de la séance* : (ex: Définir l'égalité en droit, identifier les textes fondateurs, distinguer égalité formelle et égalité réelle).
+* *Accroche (5-10 min)* : (ex: Brainstorming à partir du mot "égalité" ou courte vidéo provoquant le débat).
+* *Activité 1 (30-35 min)* : Analyse guidée de documents (extraits simplifiés de la DDHC, du Préambule de la Constitution de 1946, d'un article du Code civil sur l'égalité).
+* *Activité 2 (30-35 min)* : Étude de cas simples illustrant différentes dimensions de l'égalité (ex: égalité homme-femme dans l'accès à l'emploi, égalité devant la justice).
+* *Synthèse et Trace Écrite (10-15 min)* : Co-construction d'une définition de l'égalité et de ses dimensions.
+* *Matériel et Supports* : (Lister précisément).
+* *Pistes d'évaluation formative* : (ex: QCM rapide sur les définitions).
+
+**Séance 2 : Les inégalités et les discriminations : réalités et mécanismes**
+* *Objectifs Spécifiques de la séance* : (ex: Définir discrimination, identifier les principaux critères de discrimination prohibés par la loi, analyser des statistiques sur les inégalités).
+* *Rappel et Accroche (10 min)* : (ex: Quiz interactif sur les notions de la séance 1).
+* *Activité 1 (35-40 min)* : Étude d'une enquête ou de statistiques récentes sur les inégalités en France (ex: salariales, accès au logement, origine). Fournir des graphiques simplifiés et des questions d'analyse.
+* *Activité 2 (25-30 min)* : Analyse de témoignages (écrits ou vidéo courts) de personnes victimes de discrimination. Identification du critère de discrimination et de ses conséquences.
+* *Débat Mouvant (10-15 min)* : Sur une affirmation type "En France aujourd'hui, tout le monde a les mêmes chances de réussir".
+* *Synthèse et Trace Écrite* : (ex: Tableau des critères de discrimination et exemples).
+* *Matériel et Supports*.
+* *Pistes d'évaluation formative*.
+
+**Séance 3 : Promouvoir l'égalité : quels leviers d'action ?**
+* *Objectifs Spécifiques de la séance* : (ex: Identifier les acteurs de la lutte contre les discriminations, connaître les principaux dispositifs légaux et les actions positives).
+* *Rappel et Accroche (10 min)* : (ex: Étude d'une affiche de campagne de lutte contre les discriminations).
+* *Activité 1 (35-40 min)* : Recherche en petits groupes sur les missions d'une institution (ex: Défenseur des Droits) ou sur un dispositif légal spécifique (ex: loi sur le handicap, parité). Restitution courte.
+* *Activité 2 (30-35 min)* : Mini-projet : En équipes, les élèves élaborent une proposition d'action concrète pour promouvoir l'égalité au sein du lycée.
+* *Bilan et Ouverture (10-15 min)* : Partage des propositions, réflexion sur l'engagement citoyen.
+* *Synthèse et Trace Écrite*.
+* *Matériel et Supports*.
+* *Pistes d'évaluation formative*.
+
+**Consigne finale** : Produis maintenant ces trois fiches de séance complètes et détaillées, en respectant toutes les consignes et en assurant une grande clarté pour l'enseignant de Première STMG DGEMC.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Guider l'enseignant dans un processus de co-construction avec l'IA pour élaborer une séquence pédagogique extrêmement détaillée sur l'égalité en DGEMC.</p>
+<p><strong>Résultat Attendu :</strong> Trois fiches de séance complètes et détaillées, générées par l'IA, qui constituent une séquence pédagogique prête à l'emploi sur le thème de l'égalité, avec activités, supports, et évaluations.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>3. Prompt 6 : Scénarisation Originale (Jeu de simulation de prise de décision managériale) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un concepteur de jeux de rôle pédagogiques et un spécialiste du management des organisations pour des élèves de Première STMG (enseignement de Sciences de Gestion et Numérique - SGN).
+Ta mission est de développer une proposition détaillée pour un jeu de simulation de prise de décision managériale d'une durée de 2 x 1h30 (soit 2 séances, total 3h). Le jeu s'intitulera : "Le Défi Managérial de [Nom d'une PME fictive locale, ex: 'VéloCycle Innov' (fabricant de vélos électriques) ou 'GourmetLocal' (épicerie de produits du terroir)]".
+
+**Contexte du Jeu :**
+Les élèves, répartis en équipes de 3-4, incarnent le comité de direction de la PME fictive [Nom choisi]. L'entreprise est confrontée à un défi managérial majeur et soudain, directement lié à un thème du programme de SGN de Première (ex: "[L'utilisateur choisit un défi : 'une baisse brutale de la motivation de l'équipe commerciale suite à un changement d'objectifs' ou 'la nécessité d'intégrer rapidement un nouvel outil numérique pour gérer les relations clients face à une concurrence accrue']").
+
+**Objectifs d'Apprentissage pour les Élèves :**
+1.  Analyser une situation managériale complexe en identifiant les faits, les acteurs concernés et les enjeux.
+2.  Mobiliser des connaissances de SGN (ex: sur la motivation, la communication, le leadership, la conduite du changement, l'impact du numérique) pour comprendre le problème.
+3.  Collaborer en équipe pour proposer et argumenter un plan d'action managérial comportant au moins 3 décisions/mesures concrètes.
+4.  Anticiper les conséquences possibles (positives et négatives) de ces décisions.
+
+**Pour ce jeu de simulation, tu dois fournir une structure détaillée comprenant :**
+
+* **Phase 1 : Introduction et Immersion (Séance 1 - 30 minutes)**
+    * Présentation de la PME fictive (secteur, produits/services, quelques chiffres clés simples, organigramme simplifié).
+    * Description détaillée du défi managérial soudain (le "déclencheur") et de ses premières manifestations.
+    * Assignation des rôles au sein des équipes (ex: un responsable RH, un responsable commercial, un responsable opérations – avec une brève description de leurs préoccupations face au défi).
+
+* **Phase 2 : Analyse et Diagnostic (Séance 1 - 60 minutes)**
+    * Fournir aux équipes un ensemble de 3-4 "documents internes" fictifs (ex: extrait d'un compte-rendu de réunion tendu, quelques témoignages anonymes de salariés, des indicateurs de performance en baisse, un mail urgent d'un client important). Tu décriras le contenu de ces documents.
+    * Proposer une grille d'analyse simple (3-4 questions clés) pour aider les équipes à diagnostiquer le problème et à identifier ses causes principales.
+    * Livrable attendu des équipes à la fin de la séance 1 : Un diagnostic partagé du problème (1 page max).
+
+* **Phase 3 : Proposition de Solutions et Plan d'Action (Séance 2 - 60 minutes)**
+    * Les équipes doivent brainstormer et sélectionner 3 mesures managériales concrètes pour répondre au défi.
+    * Pour chaque mesure, elles doivent justifier leur choix, identifier les ressources nécessaires et anticiper un impact positif attendu et un risque potentiel.
+    * Fournir un template simple pour la présentation de leur plan d'action.
+    * Livrable attendu : Le plan d'action détaillé.
+
+* **Phase 4 : Présentation et Débriefing Collectif (Séance 2 - 30 minutes)**
+    * Chaque équipe présente brièvement (5 min) son diagnostic et son plan d'action.
+    * L'enseignant anime un débriefing collectif pour comparer les approches, discuter de la pertinence des solutions et faire le lien avec les concepts clés du programme de SGN. Propose 3 questions clés pour ce débriefing.
+
+Pour chaque phase, indique les consignes claires à donner aux élèves et le rôle de l'enseignant (facilitateur, personne-ressource).</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider l'enseignant à concevoir une séquence d'apprentissage engageante sous forme de jeu de simulation sur la prise de décision managériale en SGN.</p>
+<p><strong>Résultat Attendu :</strong> Une proposition détaillée pour un jeu de simulation en plusieurs phases, avec contexte, objectifs, déroulement, et modalités de débriefing.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>4. Prompt 13 : Création d'un Escape Game Pédagogique (Gestion des Stocks) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis en tant que concepteur de jeux sérieux (serious games) et expert en logistique/gestion des stocks pour des élèves de Première STMG (spécialité Gestion).
+Ta mission est de créer le scénario COMPLET et détaillé d'un escape game pédagogique d'une durée effective de jeu de 1 heure 30 minutes (hors briefing et débriefing), intitulé : "Alerte Stocks Critiques chez [Nom d'un type de commerce de détail familier, ex: 'TechPlanet' (magasin d'électronique) ou 'FreshDelice' (épicerie fine)]".
+Le public : Élèves de Première STMG (Gestion), en équipes de 4.
+Objectifs d'apprentissage : Les élèves devront appliquer les notions de :
+    a) Calcul et interprétation du stock de sécurité.
+    b) Détermination du point de commande.
+    c) Identification des coûts liés au surstockage et à la rupture de stock.
+    d) Compréhension de l'impact d'une bonne/mauvaise gestion des stocks sur la satisfaction client et la rentabilité.
+Le scénario général : Les équipes incarnent les nouveaux gestionnaires de stocks du magasin [Nom choisi]. Une crise soudaine (ex: un fournisseur clé fait faillite, une promotion inattendue explose la demande pour un produit phare) menace de paralyser l'activité. Ils doivent résoudre une série de 4 énigmes interdépendantes pour stabiliser la situation et assurer la continuité des ventes.
+Pour l'ensemble de l'escape game, tu dois fournir :
+1.  **Briefing initial pour l'enseignant** (mise en place, matériel à prévoir – ex: calculatrices, fiches produits fictives, fausses factures, tableur simplifié pré-rempli pour certains calculs).
+2.  **Introduction immersive pour les élèves** (le contexte de la crise, leur mission).
+3.  **Pour chacune des 4 énigmes** :
+    * Un titre thématique.
+    * L'objectif pédagogique spécifique de l'énigme.
+    * La description détaillée de la tâche à accomplir par les élèves (incluant les données/documents fictifs à leur fournir – décris-les précisément).
+    * La solution attendue et comment elle débloque l'accès à l'énigme suivante ou à un indice clé.
+    * Des suggestions de 2 niveaux d'indices (un indice "coup de pouce" et un indice "solution partielle") si une équipe est bloquée.
+    * Le matériel spécifique nécessaire pour cette énigme.
+4.  **Mécanisme de 'victoire'** (comment les équipes savent qu'elles ont réussi l'escape game).
+5.  **Pistes pour le débriefing pédagogique** (questions clés à poser aux élèves pour consolider les apprentissages).
+Assure-toi que les énigmes sont logiques, stimulantes, et nécessitent la collaboration au sein des équipes. Les calculs doivent rester simples et réalisables en 1h30.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Fournir à l'enseignant un scénario complet pour un escape game pédagogique clé en main sur la gestion des stocks en SGN.</p>
+<p><strong>Résultat Attendu :</strong> Un document complet décrivant briefing, introduction, 4 énigmes (avec objectifs, tâches, solutions, indices, matériel), mécanisme de victoire et pistes pour le débriefing.</p>
+</div>
+</div>
+</div>
+</div>
+<section class="phase-gallery-card border-cyan-600">
+<h3 class="phase-main-title flex items-center" style="color: #0891b2;"><i class="fas fa-lightbulb mr-3 text-cyan-700"></i>Phase 2 : Introduction et Découverte des Concepts</h3>
+<div class="mt-4" id="phase2-prompts">
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>5. Prompt 8 : Génération d'Exemples et d'Analogies (Communication Persuasive) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis en tant que formateur en communication et marketing, habitué à travailler avec des élèves de Première STMG (enseignement de Sciences de Gestion et Numérique - SGN) qui découvrent ces concepts.
+Ta mission est d'expliquer de manière particulièrement claire, engageante et mémorable le concept de "**communication persuasive**" utilisée par les organisations (entreprises, associations).
+Pour cela, ta réponse doit être structurée comme suit :
+
+1.  **Analogie Principale Éclairante (pour introduire) :**
+    * Propose une analogie originale et très pertinente pour des jeunes de 15-16 ans, tirée de leur quotidien ou de leurs centres d'intérêt (ex: comment un ami essaie de convaincre un autre de regarder une série, comment un influenceur présente un produit, comment on choisit un argument pour une discussion en famille).
+    * L'analogie doit clairement illustrer l'idée de vouloir influencer l'avis ou le comportement de quelqu'un par des messages spécifiques, sans être manipulatrice. Explique brièvement (2 phrases) le lien entre l'analogie et la communication persuasive des organisations.
+
+2.  **Définition Simplifiée et Opérationnelle (pour comprendre) :**
+    * Définis la "communication persuasive" en 2-3 phrases maximum, en utilisant un langage très simple et en te concentrant sur son objectif (influencer, convaincre, faire agir) et ses composantes de base (message, émetteur, récepteur, canal). Évite tout jargon théorique complexe (ex: ne pas entrer dans les modèles de Lasswell ou Shannon sauf si ultra-simplifié).
+
+3.  **Trois Exemples Concrets et Variés d'Organisations (pour illustrer) :**
+    * Sélectionne **trois types d'organisations différentes** (ex: une entreprise commerciale connue des jeunes, une association de sensibilisation à une cause, une organisation publique menant une campagne de prévention).
+    * Pour chaque organisation, décris **une action de communication persuasive spécifique et récente** (moins de 2 ans) qu'elle a menée.
+    * Analyse brièvement (3-4 phrases par exemple) :
+        * Quel était l'**objectif principal** de cette communication (ex: augmenter les ventes, changer un comportement, améliorer l'image) ?
+        * Quelle(s) **technique(s) de persuasion simple(s)** a-t-elle utilisée (ex: appel à l'émotion, témoignage, argument d'autorité simplifié, offre limitée dans le temps, mise en avant des bénéfices) ?
+        * Quel **canal de communication principal** a-t-elle utilisé pour cette action (ex: publicité TV, post sur TikTok, campagne d'affichage, e-mailing) ?
+
+4.  **Mini-Activité de Réflexion pour les Élèves (pour appliquer) :**
+    * Propose une consigne simple demandant aux élèves, en petits groupes, de trouver un autre exemple de communication persuasive d'une organisation de leur choix, et d'identifier son objectif, la technique principale et le canal utilisé.
+
+Ta réponse doit être rédigée de manière à pouvoir être utilisée directement comme support de cours ou fiche ressource pour les élèves de Première STMG.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider l'enseignant à créer un support de cours pour expliquer la communication persuasive en SGN de manière claire et mémorable.</p>
+<p><strong>Résultat Attendu :</strong> Un texte structuré comprenant une analogie principale pertinente, une définition simplifiée, trois exemples concrets et analysés d'organisations, et une mini-activité de réflexion pour les élèves.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>6. Prompt 16 : Explication d'un Concept avec Différents Niveaux de Difficulté (Amortissement Comptable) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis en tant que professeur agrégé d'économie et gestion, expert en vulgarisation de concepts financiers complexes pour un public de lycéens (Terminale STMG, spécialité Gestion et Finance).
+Ma mission est de t'aider à préparer une ressource pédagogique complète pour expliquer le concept d' 'amortissement comptable d'une immobilisation'. Cette ressource doit être structurée en trois niveaux de difficulté progressive, clairement identifiés :
+
+**Niveau 1 : Découverte Intuitive (pour tous les élèves, y compris ceux ayant des difficultés)**
+1.  **Analogie principale** : Propose une analogie très concrète et facile à comprendre pour un lycéen (ex: l'usure progressive d'un scooter acheté neuf, la perte de valeur d'un smartphone sur 3 ans). L'analogie doit clairement introduire l'idée de perte de valeur d'un bien utilisé sur plusieurs années.
+2.  **Explication ultra-simplifiée** : En 3-4 phrases maximum, explique le "pourquoi" de l'amortissement (constater la perte de valeur et la répartir sur la durée d'utilisation) sans utiliser de termes techniques comptables.
+3.  **Mini-Quiz (1 question)** : Une question très simple à choix multiple (3 options) pour vérifier la compréhension de l'analogie et du "pourquoi".
+
+**Niveau 2 : Compréhension des Mécanismes de Base (pour la majorité de la classe)**
+1.  **Définition des termes clés** : Définis clairement et simplement : 'immobilisation', 'valeur d'origine (VO)', 'durée d'utilité', 'annuité d'amortissement', 'valeur nette comptable (VNC)'. Utilise des exemples chiffrés simples pour chaque terme.
+2.  **Explication du principe de l'amortissement linéaire** : Explique le calcul de l'annuité (VO / durée) et comment la VNC diminue chaque année. Illustre avec un exemple simple (ex: achat d'un ordinateur à 1000€ amorti sur 5 ans). Présente un tableau d'amortissement simplifié pour cet exemple.
+3.  **Mini-Quiz (2 questions)** : Deux questions (une à réponse courte, une à choix multiple) pour vérifier la compréhension des termes et du calcul de l'annuité linéaire.
+
+**Niveau 3 : Approfondissement et Implications (pour les élèves souhaitant aller plus loin ou pour une préparation post-bac)**
+1.  **Impact sur les documents de synthèse** : Explique brièvement (sans entrer dans des écritures comptables complexes) comment l'amortissement affecte le compte de résultat (charge) et le bilan (diminution de la valeur de l'immobilisation).
+2.  **Introduction à l'amortissement dégressif** : Mentionne son existence et son objectif principal (avantage fiscal en début de période) sans détailler les calculs, juste pour sensibiliser à d'autres méthodes.
+3.  **Enjeu managérial** : Explique en 2-3 phrases pourquoi l'amortissement est important pour la gestion de l'entreprise (ex: décision de renouvellement des immobilisations, calcul des coûts plus précis).
+4.  **Mini-Quiz (1 question)** : Une question ouverte simple demandant d'expliquer l'un des enjeux managériaux.
+
+Pour chaque niveau, le langage doit être adapté. La présentation finale doit être claire et bien structurée.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Permettre à l'enseignant de disposer d'une ressource pédagogique multi-niveaux pour expliquer un concept technique (ici, l'amortissement comptable) en s'adaptant à l'hétérogénéité de la classe.</p>
+<p><strong>Résultat Attendu :</strong> Une explication du concept d'amortissement structurée en trois niveaux de difficulté progressive, chacun avec des définitions, exemples, et un mini-quiz adapté.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>7. Prompt 9 : Traduction Linguistique avec Nuance Contextuelle - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un traducteur spécialisé en terminologie du commerce international et comme un formateur pour des élèves de Terminale STMG (qui peuvent avoir des bases en économie/gestion mais sont débutants en techniques de commerce international).
+Ta tâche est double :
+1.  Traduis l'expression anglaise 'Letter of Credit' (L/C) en français de la manière la plus usuelle dans le contexte professionnel du commerce international.
+2.  Immédiatement après la traduction, explique ce qu'est un crédit documentaire (ou lettre de crédit) en 80-100 mots maximum. Ton explication doit :
+    * Être formulée en des termes très simples et clairs, en évitant tout jargon financier ou juridique complexe qui ne serait pas défini.
+    * Mettre en évidence son rôle principal : sécuriser une transaction commerciale internationale pour l'acheteur ET le vendeur.
+    * Illustrer son fonctionnement de base en mentionnant brièvement l'intervention des banques comme intermédiaires de confiance.
+    * Conclure sur l'avantage principal pour les deux parties (ex: réduction des risques).
+Ne fournis aucune information au-delà de cette explication concise.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider l'enseignant à clarifier un terme technique en langue étrangère important dans un contexte spécifique (ici, 'Letter of Credit' en commerce international, adaptable à d'autres termes éco/droit).</p>
+<p><strong>Résultat Attendu :</strong> La traduction française usuelle du terme et une explication concise (80-100 mots) de son rôle et de son fonctionnement de base, formulée simplement.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="phase-gallery-card border-lime-600">
+<h3 class="phase-main-title flex items-center" style="color: #4d7c0f;"><i class="fas fa-pencil-ruler mr-3 text-lime-700"></i>Phase 3 : Appropriation et Entraînement</h3>
+<div class="mt-4" id="phase3-prompts">
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>8. Prompt 4 : Création de QCM Interactif avec Feedback Immédiat - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis en tant que concepteur expert de modules d'évaluation formative en ligne pour l'enseignement de Droit en Première STMG.
+En te basant EXCLUSIVEMENT sur les notions fondamentales relatives au thème "[L'utilisateur insère ici un thème précis du programme de Droit de Première STMG, ex: 'La preuve des droits subjectifs' ou 'Les conditions de formation du contrat']", que je te fournirai sous forme d'une liste de 8 à 10 points essentiels et définitions clés (niveau Première STMG), tu vas créer un QCM interactif de 8 questions.
+Pour chaque question du QCM :
+1.  **Formulation de la Question** : La question doit être claire, univoque et directement liée à l'un des points essentiels fournis. Varie les types de questions (ex: définition à reconnaître, application d'une règle simple à un mini-cas, identification d'une exception).
+2.  **Options de Réponse** : Propose 4 options de réponse (A, B, C, D). Une seule réponse doit être correcte. Les trois distracteurs doivent être plausibles, c'est-à-dire basés sur des erreurs ou confusions fréquentes que font les élèves de Première STMG sur ce thème.
+3.  **Interaction et Feedback** : Attends que je te donne une réponse (en tant qu'élève, je choisirai A, B, C ou D).
+    * Si ma réponse est **correcte** : Confirme la justesse, félicite brièvement, et renforce la notion en donnant un exemple concret supplémentaire ou en soulignant un point important de la règle de droit concernée non explicitement testé par la question.
+    * Si ma réponse est **incorrecte** : Indique que la réponse n'est pas la bonne. Explique clairement et simplement pourquoi elle est incorrecte, en te référant au point essentiel du cours concerné. Indique ensuite la bonne réponse et fournis une explication concise de celle-ci.
+4.  **Transition** : Après le feedback, annonce "Question suivante :" ou "Passons à la question X :".
+
+**À la fin des 8 questions, tu devras fournir :**
+a)  Un score final (ex: "Vous avez obtenu X/8 bonnes réponses.").
+b)  Un **bilan pédagogique personnalisé** : Pour chaque question où j'ai commis une erreur, rappelle la question, ma réponse erronée, la bonne réponse, et une reformulation de l'explication clé (en 1-2 phrases maximum par erreur).
+c)  Une suggestion de **méthode de révision ciblée** pour les notions qui ont posé problème (ex: "Pour revoir la notion de [notion X], tu peux relire le paragraphe Y de ton cours et essayer de créer ta propre fiche mémo avec des exemples.").
+
+Le ton général doit être encourageant et viser à consolider la compréhension. Évite toute complexité inutile dans le langage.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Fournir aux élèves un outil d'auto-évaluation dynamique et formatif pour réviser un thème précis du programme (ici, en Droit).</p>
+<p><strong>Résultat Attendu :</strong> Une série de questions interactives où l'élève reçoit un feedback immédiat et personnalisé pour chaque réponse, un score final, et un bilan pédagogique avec des pistes de révision ciblées.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>9. Prompt 19 : Résumé d'Article d'Actualité Économique - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un journaliste économique pédagogue, capable de synthétiser des informations complexes pour un public de lycéens (Première STMG, enseignement d'Économie).
+Je te fournirai un article de presse économique récent (moins de 3 mois, environ 800-1000 mots) traitant de [L'utilisateur choisit un thème d'actualité économique pertinent pour le programme de Première STMG, ex: "l'évolution récente du taux de chômage des jeunes en France et les politiques d'emploi mises en œuvre" ou "l'impact de la hausse des prix de l'énergie sur le budget des ménages et les stratégies d'adaptation"].
+Ta mission est de produire, à partir de cet article UNIQUEMENT :
+1.  **Un résumé analytique** (300 mots maximum) destiné aux élèves. Ce résumé doit :
+    * Identifier le fait économique principal traité et son contexte.
+    * Expliquer clairement (avec des définitions simples si nécessaire) les 2-3 mécanismes économiques clés qui sont en jeu dans l'article (ex: lien entre formation et chômage, rôle de la demande globale, inflation par les coûts).
+    * Mettre en évidence les 3-4 données chiffrées les plus significatives et leur signification.
+    * Utiliser un langage rigoureux mais très accessible, en évitant le jargon non expliqué.
+2.  **Un glossaire de 3 à 5 termes économiques** importants présents dans l'article, avec pour chacun une définition simple et un exemple d'utilisation tiré (ou inspiré) de l'article.
+3.  **Deux questions de discussion pour la classe**, basées sur l'article, qui encouragent la réflexion critique et le lien avec le cours d'économie de Première STMG. (Ex: "Quelles autres solutions pourraient être envisagées pour... ?", "Quelles limites voyez-vous à l'analyse présentée dans cet article concernant...?").
+La réponse doit être structurée clairement avec des titres pour chaque section (Résumé, Glossaire, Questions de discussion).</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Permettre à l'enseignant de fournir aux élèves une synthèse accessible d'un article d'actualité économique, accompagnée d'outils pour en faciliter la compréhension et la discussion (glossaire, questions).</p>
+<p><strong>Résultat Attendu :</strong> Un résumé analytique de l'article (max 300 mots), un glossaire de termes économiques clés, et deux questions de discussion pour la classe.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="phase-gallery-card border-orange-500">
+<h3 class="phase-main-title flex items-center" style="color: #c2410c;"><i class="fas fa-laptop-code mr-3 text-orange-700"></i>Phase 4 : Application et Création</h3>
+<div class="mt-4" id="phase4-prompts">
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>10. Prompt 3 : Remplissage de Matrices (Templates) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">
+Agis comme un assistant pédagogique expert, capable d'analyser et de comprendre des structures de documents complexes.
+Je vais te fournir un fichier DOCX intitulé 'Matrice_Analyse_Organisation_SGN_1ere_STMG.docx'. Ce document est ma matrice standard pour guider les élèves de Première STMG (Sciences de Gestion et Numérique) dans l'analyse d'une organisation réelle (entreprise, association, organisation publique).
+Cette matrice comprend impérativement les sections suivantes, que tu dois identifier et mémoriser précisément pour la tâche suivante :
+1.  **Identification de l'Organisation** (Nom, secteur d'activité, type d'organisation, taille, finalité(s)).
+2.  **Diagnostic Interne Simplifié** (Identification des principales ressources mobilisées : humaines, financières, matérielles, immatérielles ; identification d'une force et d'une faiblesse marquantes de l'organisation).
+3.  **Diagnostic Externe Simplifié** (Identification d'une opportunité et d'une menace majeures de son environnement).
+4.  **Description de son Organisation du Travail** (Comment le travail est-il réparti ? Y a-t-il une hiérarchie claire ? Observe-t-on une spécialisation ou une polyvalence des tâches ?).
+5.  **Analyse d'un Problème de Gestion Simple** (Description d'un dysfonctionnement observé ou d'un défi à relever par l'organisation, ex: communication interne difficile, motivation d'une équipe, adaptation à un nouveau besoin client).
+Confirme-moi explicitement que tu as bien analysé et compris la fonction et le niveau de détail attendu pour CHACUNE de ces 5 sections avant que nous passions à l'étape suivante.
+
+--- (Après confirmation de l'IA) ---
+
+Excellent. Maintenant, en utilisant STRICTEMENT la structure, le style de formulation et le niveau de détail de la matrice analysée, tu vas remplir cette matrice pour l'organisation suivante :
+L'organisation à analyser est "[Nom d'une association locale connue des élèves ou d'une petite entreprise de leur environnement proche, ex: 'Le Club de Foot de la Ville de [NomVille]' ou 'La Boulangerie Artisanale [NomBoulangerie] du centre-ville']".
+Tu devras imaginer des informations plausibles et cohérentes pour cette organisation afin de compléter toutes les sections de la matrice. Pour la section 'Analyse d'un Problème de Gestion Simple', concentre-toi sur un problème lié à [Choisir un thème pertinent pour le programme de SGN en 1ère, ex: 'la motivation des bénévoles pour l'association' ou 'l'adaptation de la boulangerie à la concurrence des grandes surfaces'].
+En plus de la matrice complétée, ajoute une section distincte à la fin, intitulée 'Pistes de Questions pour l'Enseignant'. Cette section devra contenir :
+    a) 3 questions ouvertes que l'enseignant pourrait poser aux élèves pour approfondir leur analyse de cette organisation spécifique.
+    b) 2 suggestions d'activités complémentaires courtes (ex: rechercher l'organigramme réel s'il existe, interviewer un membre de l'organisation).
+L'ensemble doit être rédigé dans un langage adapté à des élèves de Première STMG et servir de modèle d'analyse d'organisation.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Fournir à l'enseignant un modèle d'analyse d'organisation (ici, une association ou PME locale en SGN) rempli par l'IA, que les élèves pourraient ensuite utiliser comme exemple ou base pour leurs propres analyses.</p>
+<p><strong>Résultat Attendu :</strong> La matrice d'analyse complétée de manière plausible et cohérente pour l'organisation choisie, ainsi que des pistes de questions et d'activités complémentaires pour l'enseignant.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>11. Prompt 14 : Développement d'une Narration Interactive (Parcours Client) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis en tant que scénariste de fiction interactive pédagogique et expert en marketing digital (spécialité Mercatique, niveau Terminale STMG).
+Ta mission est de développer le script complet d'une histoire interactive de type "vous êtes le héros" (ou "choisissez votre propre aventure") pour aider mes élèves de Terminale STMG (Mercatique) à comprendre et visualiser le concept de 'parcours client digital omnicanal'.
+Le scénario : L'élève incarnera 'Alex', un(e) jeune de 17 ans souhaitant acheter un nouveau modèle de baskets éco-responsables d'une marque fictive tendance appelée "GreenStep".
+L'histoire doit comporter entre 5 et 7 étapes clés du parcours client, depuis la prise de conscience du besoin jusqu'à la fidélisation post-achat.
+Pour chaque étape-clé, tu devras :
+1.  Décrire brièvement la situation d'Alex (1-2 phrases).
+2.  Proposer à Alex **exactement 2 ou 3 choix d'actions clairs et distincts** qu'il/elle peut entreprendre. Ces actions doivent refléter des points de contact digitaux et/ou physiques variés (ex: recherche Google, consultation d'avis sur un blog, visite du site web de la marque, interaction sur Instagram, discussion avec un ami via messagerie, visite en magasin physique pour essayer).
+3.  Pour chaque choix, indiquer la conséquence directe de cette action, menant à la description de la situation de l'étape suivante.
+4.  Identifier explicitement et nommer (entre parenthèses après la description de l'action ou de la situation) le(s) **point(s) de contact** mobilisé(s) (ex: Réseaux sociaux - Instagram, Site e-commerce de la marque, Magasin physique) et le **type d'interaction** (ex: Inspiration, Recherche d'information, Comparaison, Achat, SAV, Partage d'expérience).
+L'objectif final est que l'élève, en naviguant à travers les choix :
+    * Expérimente la diversité des points de contact d'un parcours omnicanal.
+    * Identifie les "moments de vérité" (interactions clés qui influencent fortement sa décision).
+    * Comprenne comment l'entreprise (GreenStep) peut influencer positivement son expérience à chaque étape.
+Le ton doit être engageant et le langage adapté à des lycéens. Prévois une brève introduction pour lancer l'aventure et une conclusion qui invite l'élève à réfléchir sur son propre parcours en tant que consommateur. La structure de ta réponse doit permettre une lecture facile et une navigation claire entre les étapes et les choix (ex: utilisation de titres pour chaque étape, numérotation des choix).</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Permettre aux élèves de comprendre de manière immersive un concept clé en marketing (ici, le parcours client digital omnicanal).</p>
+<p><strong>Résultat Attendu :</strong> Le script complet d'une histoire interactive avec 5-7 étapes clés, où chaque étape propose 2-3 choix d'actions avec leurs conséquences, identifiant les points de contact et types d'interaction.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="phase-gallery-card border-red-500">
+<h3 class="phase-main-title flex items-center" style="color: #b91c1c;"><i class="fas fa-tasks mr-3 text-red-700"></i>Phase 5 : Évaluation Formative et Sommative</h3>
+<div class="mt-4" id="phase5-prompts">
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>12. Prompt 5 : Conception d'Évaluation Sommative (Type Épreuve Commune) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un enseignant expérimenté en Économie-Droit pour la Première STMG, membre d'une équipe pédagogique chargée de créer des sujets d'épreuves communes de contrôle continu (E3C) ou des évaluations de fin de chapitre robustes.
+Ta mission est de construire une proposition de sujet complet pour une évaluation sommative de 2 heures en Économie, destinée à des élèves de Première STMG, portant sur le thème : "[L'utilisateur insère un thème du programme d'Économie de Première STMG, par exemple : 'Comment la richesse se crée-t-elle et se répartit-elle ?' ou 'Quelles sont les grandes questions économiques et leurs enjeux actuels ?']".
+Ce sujet doit impérativement :
+1.  Être accompagné d'un **barème détaillé sur 20 points**, avec une pondération claire pour chaque partie et chaque question.
+2.  Comporter **deux parties distinctes et équilibrées** en termes de points (environ 10 points chacune) :
+
+    * **Partie 1 : Mobilisation des connaissances et traitement de l'information (environ 10 points)**
+        * S'appuyer sur un **dossier documentaire concis de 2 à 3 documents courts et variés** (ex: un graphique commenté sur la répartition des revenus, un extrait d'article de presse économique très accessible sur la création de valeur par une entreprise, un schéma illustrant le circuit économique simplifié). Tu décriras précisément la nature et le contenu de chaque document que l'IA devrait idéalement fournir ou que l'enseignant devra trouver.
+        * Comprendre **3 à 4 questions** qui amènent l'élève à :
+            a.  Repérer et présenter des informations clés issues des documents.
+            b.  Expliquer une notion économique fondamentale du chapitre à l'aide des documents et de ses connaissances.
+            c.  Illustrer un mécanisme économique simple à partir d'un exemple fourni dans le dossier.
+
+    * **Partie 2 : Raisonnement argumenté (environ 10 points)**
+        * Proposer une **question problématisée simple** en lien direct avec le thème du chapitre, invitant à une réponse structurée et argumentée. Par exemple, si le thème est la création de richesse : "Dans quelle mesure la recherche du profit par les entreprises contribue-t-elle toujours à l'amélioration du bien-être collectif ?".
+        * L'élève devra y répondre en mobilisant ses connaissances, en s'appuyant éventuellement sur les documents de la première partie (s'ils sont pertinents pour cette question), et en structurant sa réponse (introduction simple posant le problème, développement avec deux arguments distincts illustrés, conclusion concise).
+        * Fournis des **pistes claires pour les deux arguments principaux** que les élèves pourraient développer.
+
+3.  Assurer que l'ensemble du sujet est d'un **niveau de difficulté adapté à la Première STMG**, en utilisant un langage clair et des situations économiques compréhensibles pour ce public. Les questions doivent permettre de valoriser la capacité à comprendre, analyser sommairement et argumenter.
+4.  Inclure une **note à l'attention de l'élève** précisant les attentes en termes de clarté de l'expression et de structuration des réponses.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider l'enseignant à créer un sujet d'évaluation sommative complet et équilibré pour un thème du programme d'Économie, respectant une structure en deux parties et incluant un barème détaillé.</p>
+<p><strong>Résultat Attendu :</strong> Une proposition de sujet complet (2h) avec dossier documentaire décrit, questions d'analyse, question problématisée avec pistes d'arguments, barème détaillé, et note à l'attention de l'élève.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>13. Prompt 17 : Création d'une Grille d'Évaluation pour un Oral de Projet - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un enseignant chevronné de Sciences de Gestion et Numérique (SGN) en Première STMG, habitué à évaluer des projets d'élèves.
+Mes élèves de Première STMG viennent de terminer un projet collaboratif qui consistait à "[L'utilisateur décrit ici le projet de manière concise, ex: 'analyser l'organisation d'une association caritative locale et proposer des pistes d'amélioration de sa communication digitale' ou 'concevoir une enquête sur les habitudes de consommation responsable des lycéens de l'établissement et présenter les résultats']".
+Chaque équipe (3-4 élèves) doit maintenant réaliser une présentation orale de 10 minutes, suivie de 5 minutes de questions-réponses avec le jury (composé de l'enseignant et potentiellement d'un autre professeur).
+Ta mission est de créer une grille d'évaluation critériée, précise et équilibrée, sur un total de 20 points, pour cet oral. La grille doit évaluer les aspects suivants, chacun avec des indicateurs observables :
+
+1.  **Maîtrise du Sujet et Démarche de Projet (8 points) :**
+    * Compréhension des enjeux du projet et pertinence de la problématique posée (ou de l'objectif visé). (2 pts)
+    * Clarté de la méthodologie employée (recherche d'information, outils utilisés, étapes suivies). (3 pts)
+    * Qualité de l'analyse produite et pertinence des conclusions ou propositions. (3 pts)
+2.  **Qualité de la Présentation Orale (6 points) :**
+    * Structure de l'exposé (introduction claire, développement logique, conclusion pertinente). (2 pts)
+    * Clarté de l'expression, aisance à l'oral, dynamisme et engagement. (2 pts)
+    * Gestion du temps de parole (individuel et collectif). (2 pts)
+3.  **Qualité des Supports Visuels (3 points) :**
+    * Pertinence, lisibilité et apport des supports (diaporama, etc.). (2 pts)
+    * Correction de la langue et soin apporté à la présentation des supports. (1 pt)
+4.  **Capacité à Interagir avec le Jury (3 points) :**
+    * Qualité et précision des réponses aux questions. (2 pts)
+    * Capacité à argumenter et à défendre ses choix. (1 pt)
+
+Pour chaque indicateur listé ci-dessus, définis **4 niveaux de maîtrise explicites et différenciés** : 'Non Acquis/Très Insuffisant' (correspondant à une note indicative de 0-0.5 pour l'indicateur), 'En Cours d'Acquisition/Fragile' (1 pt), 'Acquis/Satisfaisant' (note indicative max de l'indicateur -0.5 pt), 'Maîtrisé/Très Satisfaisant' (note indicative max de l'indicateur).
+Par exemple, pour "Clarté de l'expression...", les niveaux pourraient être :
+* Non Acquis : Expression confuse, vocabulaire inadapté, lecture excessive des notes.
+* Fragile : Expression globalement compréhensible mais hésitante, quelques erreurs de vocabulaire, appui important sur les notes.
+* Satisfaisant : Expression claire, vocabulaire adapté, bonne autonomie par rapport aux notes.
+* Très Satisfaisant : Expression fluide, précise, vocabulaire riche et pertinent, excellente aisance et contact visuel.
+
+La grille doit être directement utilisable par un enseignant pour une évaluation équitable et transparente.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Fournir à l'enseignant une grille d'évaluation détaillée et critériée pour évaluer de manière équitable et transparente les présentations orales des projets menés par les élèves.</p>
+<p><strong>Résultat Attendu :</strong> Une grille d'évaluation sur 20 points, structurée en grands domaines de compétences, avec des indicateurs observables et 4 niveaux de maîtrise explicites pour chaque indicateur.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>14. Prompt 12 : Vérification de la Cohérence d'une Analyse (Étude de Gestion) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un professeur correcteur expérimenté en Management (niveau Terminale STMG), spécialisé dans l'évaluation de la pertinence des analyses stratégiques.
+Je suis un élève de Terminale STMG et je te soumettrai une analyse rédigée (environ 500-600 mots) concernant la décision stratégique de l'entreprise [Nom d'une entreprise française ou opérant significativement en France, ex: 'Décathlon et sa stratégie d'expansion sur le marché asiatique' ou 'Orange et son investissement dans la cybersécurité']. Mon analyse tente d'utiliser des outils de diagnostic comme [L'élève mentionne un ou deux outils utilisés, ex: 'la matrice SWOT et les 5 forces de Porter de manière simplifiée'].
+Ta mission, une fois que tu auras lu mon texte, est de me fournir un feedback constructif et détaillé visant exclusivement à améliorer la qualité de mon argumentation. Pour cela, ton retour devra :
+1.  Identifier clairement (en citant des passages de mon texte si besoin) **au maximum 2 points forts** de mon analyse actuelle.
+2.  Identifier avec précision (en citant) **au maximum 3 points faibles ou manques de logique/cohérence** dans mon argumentation ou dans l'application des outils de diagnostic.
+3.  Pour chacun de ces points faibles, me proposer une **suggestion concrète d'amélioration** : cela peut être une reformulation, une question à me poser pour approfondir, un type d'information complémentaire à rechercher, ou une manière plus pertinente d'utiliser l'outil de diagnostic mentionné.
+4.  Évaluer si ma **conclusion est suffisamment étayée** par les arguments présentés et, si non, indiquer quel(s) argument(s) mériterai(en)t d'être renforcé(s) pour la soutenir plus solidement.
+5.  Proposer **une question d'approfondissement** que je pourrais explorer pour aller plus loin dans la compréhension des implications de cette décision stratégique pour l'entreprise.
+Ne corrige pas les aspects stylistiques ou orthographiques, concentre-toi uniquement sur la structure argumentative, la pertinence de l'analyse managériale et l'utilisation des outils. Ton feedback doit être formulé de manière encourageante et pédagogique.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Permettre à l'enseignant d'obtenir un feedback constructif sur une analyse d'élève, ou à l'élève de faire "pré-corriger" son travail par l'IA pour améliorer son argumentation avant la soumission finale.</p>
+<p><strong>Résultat Attendu :</strong> Un feedback identifiant 2 points forts, 3 points faibles avec suggestions d'amélioration, une évaluation de la conclusion, et une question d'approfondissement, le tout centré sur l'argumentation.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="phase-gallery-card border-yellow-500">
+<h3 class="phase-main-title flex items-center" style="color: #a16207;"><i class="fas fa-user-graduate mr-3 text-yellow-700"></i>Phase 6 : Remédiation et Approfondissement</h3>
+<div class="mt-4" id="phase6-prompts">
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>15. Prompt 7 : Adaptation de Contenus pour Besoins Spécifiques (Droit) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">
+Agis comme un ingénieur pédagogique spécialisé dans la création de ressources accessibles pour les élèves présentant des troubles d'apprentissage (DYS), et également comme un juriste pédagogue capable de simplifier des concepts de Droit pour le niveau Première STMG.
+Je te fournirai un texte juridique d'environ 600-800 mots, extrait d'un manuel de Première STMG, portant sur "[L'utilisateur insère ici un thème précis du programme de Droit de Première STMG, par exemple : 'Les sources du droit et la hiérarchie des normes' ou 'Le rôle et le fonctionnement de la justice civile']". Ce texte est destiné à un élève de Première STMG présentant une dyslexie sévère et des difficultés de concentration.
+Ta mission est de transformer ce texte en une ressource multi-supports hautement accessible, en réalisant les trois tâches suivantes :
+
+1.  **Simplification et Structuration du Texte Original :**
+    * Réduis le contenu à l'essentiel, visant une longueur maximale de 400 mots (environ 1 page A4, police taille 13).
+    * Réécris le texte en utilisant exclusivement des phrases courtes (12-15 mots en moyenne), une structure grammaticale simple (Sujet-Verbe-Complément), et un vocabulaire juridique de base, systématiquement expliqué par des termes plus courants ou des exemples si nécessaire (fournis une liste des 3-5 termes juridiques clés que tu as simplifiés et leur équivalent).
+    * Structure le texte avec des intertitres clairs et numérotés pour chaque idée principale.
+    * Utilise des listes à puces pour toutes les énumérations (ex: les différentes sources du droit).
+    * Mets en **gras** les 2-3 mots-clés essentiels par paragraphe.
+    * Indique clairement à la fin du texte adapté : "Ce texte a été simplifié pour en faciliter la lecture et la compréhension."
+
+2.  **Recommandations Visuelles et Typographiques :**
+    * Suggère une police d'écriture spécifiquement reconnue pour aider les élèves dyslexiques (ex: OpenDyslexic, Andika, Lexie Readable) et justifie brièvement ton choix.
+    * Recommande une taille de police minimale (ex: 13 ou 14 points), un interlignage suffisant (ex: 1.5), et l'alignement du texte à gauche (non justifié).
+    * Suggère l'utilisation discrète de couleurs de fond pâles (ex: crème, bleu très clair) pour réduire la fatigue visuelle, si l'enseignant souhaite l'imprimer.
+
+3.  **Création d'un Support Visuel Synthétique (type Sketchnote ou Carte Mentale Conceptuelle) :**
+    * Conçois la structure d'une carte mentale (ou d'un sketchnote, décris alors les éléments visuels principaux) qui résume les 3-4 idées fondamentales du texte simplifié.
+    * Pour chaque idée/branche, utilise au maximum 3-5 mots-clés et propose un pictogramme simple et universel (décris le pictogramme et sa signification dans ce contexte).
+    * La structure doit être très aérée et les liens entre les idées clairement visibles.
+
+Confirme que tu es prêt à recevoir le texte original et à exécuter ces trois tâches avec une grande rigueur méthodologique.
+
+--- (Après import du texte et confirmation) ---
+
+Voici le texte original sur "[Rappel du thème]". Procède à l'adaptation complète demandée.
+Ensuite, pour un élève allophone récemment arrivé en France, parlant [Langue X, ex: Turc] et ayant un niveau A2 en français, prépare une version audio très courte (script de 1 minute maximum, soit environ 120-150 mots) qui résume les 2 idées les plus importantes du texte simplifié (point 1 de ta tâche précédente). Le script doit être rédigé en français très simple, avec des phrases de 5-7 mots maximum. Propose également la traduction de 5 mots-clés fondamentaux du thème en [Langue X].</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider l'enseignant à transformer un texte juridique dense en une ressource multi-supports accessible pour un élève DYS (texte simplifié, recommandations visuelles, carte mentale) et pour un élève allophone (résumé audio simple, lexique traduit).</p>
+<p><strong>Résultat Attendu :</strong> Un ensemble de supports adaptés : texte simplifié et structuré, recommandations typographiques, description d'une carte mentale conceptuelle, et pour l'allophone un script audio court et une traduction de mots-clés.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>16. Prompt 18 : Adaptation d'Exercices (Calcul de Coûts) pour Élève en Difficulté - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis en tant que tuteur spécialisé en remédiation pour les notions de gestion en Première STMG, avec une expertise dans la simplification des concepts de calcul de coûts.
+J'ai un élève de Première STMG (enseignement de spécialité Sciences de Gestion et Numérique) qui rencontre des difficultés significatives à comprendre et appliquer les notions de base du calcul des coûts : distinction coûts fixes/coûts variables, calcul du coût total, et détermination du seuil de rentabilité (approche simplifiée sans prise en compte de la TVA ou de calculs complexes de charges indirectes).
+Ta mission est de créer une série de **trois exercices progressifs et autocorrectifs** pour cet élève, avec un contexte d'entreprise très simple et familier (ex: un food-truck vendant des crêpes, un stand de vente de bijoux faits main sur un marché).
+
+**Pour chaque exercice, tu dois fournir :**
+1.  **Titre de l'exercice et objectif pédagogique clair.**
+2.  **Énoncé de l'exercice** :
+    * Exercice 1 (Identification) : Une liste de 8-10 dépenses concrètes pour l'entreprise choisie. L'élève doit classer chaque dépense en 'Coût Fixe' ou 'Coût Variable' et justifier brièvement son choix pour 2 d'entre elles.
+    * Exercice 2 (Calcul Guidé) : À partir de données chiffrées simples (prix de vente unitaire, coût variable unitaire, total des coûts fixes pour une période), l'élève doit calculer le coût total pour X unités vendues, puis la marge sur coût variable unitaire, et enfin déterminer le seuil de rentabilité en quantité et en valeur (formules de calcul rappelées).
+    * Exercice 3 (Petit Problème d'Application) : Un court scénario où l'élève doit d'abord identifier les CF et CV à partir d'une description, puis effectuer les calculs de coût total et de seuil de rentabilité pour prendre une petite décision (ex: "Faut-il maintenir l'activité si on ne vend que Y unités ?").
+3.  **Correction détaillée et commentée** :
+    * La solution complète de l'exercice.
+    * Des explications pas-à-pas pour chaque étape de calcul.
+    * L'identification des erreurs typiques qu'un élève pourrait commettre et des conseils pour les éviter.
+    * Un bref rappel de la notion clé mobilisée dans l'exercice.
+4.  **Format de présentation** : Le tout doit être présenté de manière aérée, claire, avec des étapes numérotées, et un langage très accessible (niveau Première STMG en difficulté).
+
+L'objectif est que l'élève puisse travailler ces exercices en autonomie et comprendre progressivement les concepts.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Fournir à un élève en difficulté des exercices progressifs et autocorrectifs pour comprendre et appliquer des notions de calcul de coûts en SGN.</p>
+<p><strong>Résultat Attendu :</strong> Une série de trois exercices (identification, calcul guidé, petit problème) avec énoncés, corrections détaillées et commentées (incluant erreurs typiques et rappels de notions), présentés de manière claire et accessible.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="phase-gallery-card border-fuchsia-600">
+<h3 class="phase-main-title flex items-center" style="color: #a21caf;"><i class="fas fa-flag-checkered mr-3 text-fuchsia-700"></i>Phase 7 : Préparation aux Épreuves (Introduction en 1ère STMG)</h3>
+<div class="mt-4" id="phase7-prompts">
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>17. Prompt 10 : Création d'un Plan de Révision Détaillé - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un coach scolaire expert en méthodologie de préparation aux examens du baccalauréat STMG.
+Je suis un élève de Terminale STMG, spécialité [Mercatique / Systèmes d'Information de Gestion / Gestion et Finance / Ressources Humaines et Communication – l'utilisateur choisira une des quatre]. L'épreuve écrite de cette spécialité aura lieu dans exactement 8 semaines.
+Je peux consacrer environ 1h30 par jour du lundi au vendredi, et 4 heures au total le week-end (réparties entre samedi et dimanche) spécifiquement à la révision de cette matière.
+Ta mission est de me fournir un plan de révision hebdomadaire détaillé et personnalisé pour ces 8 semaines. Ce plan doit :
+1.  Être présenté sous forme de tableau avec les colonnes : 'Semaine (1 à 8)', 'Thèmes Principaux du Programme à Réviser (issus du programme officiel de la spécialité choisie)', 'Activités de Révision Suggérées (Lundi-Vendredi)', 'Activités de Révision Suggérées (Week-end)', 'Objectif Clé de la Semaine'.
+2.  Lister les thèmes principaux du programme officiel de la spécialité choisie (tu dois les identifier à partir de tes connaissances du programme STMG français).
+3.  Répartir logiquement ces thèmes sur les 7 premières semaines, en allouant plus de temps aux thèmes les plus denses ou complexes.
+4.  Dédier la 8ème semaine exclusivement à la révision générale, à l'entraînement intensif sur des sujets type bac complets (annales ou créés), et à la gestion du stress.
+5.  Pour les 'Activités de Révision Suggérées', inclure un équilibre entre :
+    * Relecture active et approfondie des cours.
+    * Création de fiches de synthèse concises et visuelles (cartes mentales, schémas).
+    * Réalisation d'exercices d'application ciblés pour chaque thème.
+    * Entraînement sur des extraits d'annales ou des études de cas spécifiques au thème.
+    * Sessions d'auto-évaluation (mini-QCM, questions flash sur les définitions clés).
+6.  Intégrer des rappels pour des pauses régulières et des conseils de méthodologie (ex: technique Pomodoro, relecture espacée).
+7.  L' 'Objectif Clé de la Semaine' doit être un résultat mesurable ou observable (ex: 'Maîtriser les concepts de X et Y', 'Être capable de résoudre des exercices sur Z').
+Assure-toi que le plan est réaliste, progressif et motivant.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider l'élève de Première STMG (spécialité à choisir) à structurer ses révisions pour une épreuve de fin d'année importante ou pour préparer la transition vers la Terminale.</p>
+<p><strong>Résultat Attendu :</strong> Un plan de révision hebdomadaire détaillé sur X semaines (à définir par l'utilisateur), présenté en tableau, répartissant les thèmes du programme, suggérant des activités équilibrées, et fixant des objectifs clés.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>18. Prompt 11 : Aide à la Structuration d'un Oral (type entraînement Grand Oral) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un tuteur expérimenté dans la préparation du Grand Oral du baccalauréat, spécifiquement pour des élèves de Terminale STMG.
+Je suis un élève de Terminale STMG, et ma question pour le Grand Oral est : "[L'utilisateur insère ici sa question précise, par exemple : 'L'utilisation croissante des algorithmes de recommandation par les entreprises de commerce en ligne améliore-t-elle réellement l'expérience client ou conduit-elle à une standardisation des choix ?']".
+Cette question est en lien avec mes enseignements de spécialité : [L'utilisateur précise ici ses deux spécialités STMG, ex: Mercatique et Systèmes d'Information de Gestion].
+Ma mission est de m'aider à construire une argumentation solide et structurée pour ma présentation orale de 5 minutes. Pour cela, propose-moi :
+1.  Une **accroche percutante** (1-2 phrases) pour capter l'attention du jury dès le début.
+2.  Une **reformulation de ma problématique** si tu estimes que ma question initiale peut être affinée pour être plus claire ou plus ciblée pour le format du Grand Oral.
+3.  Un **plan détaillé pour le développement en deux ou trois parties distinctes et équilibrées**. Chaque partie devra :
+    * Avoir un titre clair (sous forme de question ou d'affirmation).
+    * Présenter un argument principal.
+    * Être illustrée par **au moins un exemple concret et pertinent** (entreprise, situation réelle, chiffre clé, extrait d'étude) en lien avec mes spécialités STMG. Si possible, suggère des types de sources où je pourrais trouver ces exemples.
+    * Prévoir une transition logique vers la partie suivante.
+4.  Des **pistes pour ma conclusion** (2-3 phrases) qui doit :
+    * Répondre clairement à la problématique.
+    * Offrir une brève synthèse des arguments.
+    * Proposer une ouverture (nouvelle question, perspective future).
+5.  **Deux questions types** que le jury pourrait me poser suite à ma présentation, en lien avec ma question et mes spécialités, pour m'aider à anticiper l'échange.
+Je ne veux pas que tu rédiges le contenu à ma place, mais que tu me fournisses une structure et des pistes de réflexion précises.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Aider un élève de Première STMG à structurer son argumentation pour un oral important (ex: oral de projet, entraînement à une épreuve type Grand Oral si pertinent au projet d'établissement).</p>
+<p><strong>Résultat Attendu :</strong> Une proposition d'accroche, une reformulation éventuelle de la problématique, un plan détaillé pour le développement (avec arguments, exemples, transitions), des pistes pour la conclusion, et deux questions types du jury.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>19. Prompt 15 : Formulation d'une Question Problématisée (Économie) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un professeur d'Économie expérimenté, membre d'un jury de concours d'enseignement, chargé de concevoir des sujets de dissertation exigeants pour des élèves de Terminale STMG.
+Ta mission est de formuler une question problématisée INÉDITE et STIMULANTE pour une dissertation d'économie (épreuve de 4 heures, niveau Terminale STMG).
+Le thème imposé est : "Les défis de la soutenabilité de la croissance économique face aux enjeux environnementaux."
+La question problématisée que tu vas rédiger doit impérativement :
+1.  Être formulée sous une forme interrogative directe et concise (pas plus de 25 mots).
+2.  Ne pas induire une réponse binaire (oui/non), mais inviter à une discussion nuancée.
+3.  Permettre de mobiliser plusieurs concepts clés du programme d'économie de Terminale STMG liés à la croissance, au développement durable, aux externalités négatives, et aux politiques économiques (ex: PIB et ses limites, indicateurs de développement durable, principe pollueur-payeur, transition écologique, innovation verte). Tu dois lister 3-4 de ces concepts clés qui seraient particulièrement pertinents.
+4.  Inciter l'élève à analyser les tensions et les complémentarités potentielles entre objectifs de croissance économique et impératifs de préservation de l'environnement.
+5.  Ouvrir la voie à une discussion sur les différents leviers d'action (réglementation, incitations fiscales, innovations technologiques, changements de comportement) que les pouvoirs publics et les entreprises peuvent mobiliser.
+En plus de la question problématisée elle-même, fournis :
+    a) Une brève justification (2-3 phrases) expliquant en quoi cette question est pertinente et d'un niveau adapté pour la Terminale STMG.
+    b) Trois pistes principales (sous forme de titres de parties ou d'arguments clés) qui pourraient structurer le développement d'une réponse à cette question.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Permettre à l'enseignant de générer des questions problématisées pour entraîner les élèves à la dissertation ou à la réflexion argumentée en Économie. Peut aussi être utilisé par l'élève pour s'entraîner à problématiser un thème.</p>
+<p><strong>Résultat Attendu :</strong> Une question problématisée inédite et stimulante respectant des critères stricts, accompagnée d'une justification de sa pertinence et de trois pistes de développement.</p>
+</div>
+</div>
+</div>
+<div class="prompt-item">
+<button class="prompt-trigger">
+<span>20. Prompt 20 : Demande de Bibliographie/Sitographie pour Exposé (DD en Entreprise) - 1ère STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</button>
+<div class="prompt-content">
+<pre class="prompt-text-display">Agis comme un documentaliste-formateur spécialisé dans les ressources en économie-gestion pour le niveau lycée, et conscient des enjeux de la fiabilité de l'information.
+Mes élèves de Première STMG (enseignement de Management) doivent réaliser un exposé (présentation orale + support visuel) sur le thème : "Comment les entreprises du secteur [L'utilisateur choisit un secteur d'activité concret et accessible, ex: 'de la mode éthique', 'du transport urbain durable', ou 'de l'alimentation biologique'] intègrent-elles concrètement les principes du développement durable dans leur stratégie et leurs opérations ?".
+L'exposé doit s'appuyer sur des exemples d'entreprises réelles.
+Ta mission est de leur fournir une liste commentée de **5 à 7 sources d'information diversifiées, fiables et récentes (publiées ou mises à jour il y a moins de 3 ans)**.
+Pour chaque source proposée, tu dois fournir :
+1.  **Le type de source** (ex: Article de presse spécialisée, Rapport d'ONG, Site web institutionnel d'une entreprise pionnière, Étude de cas académique vulgarisée, Vidéo de conférence d'expert type TEDx, Infographie d'un organisme officiel).
+2.  **Le titre précis de la source et son auteur/organisme.**
+3.  **Un lien URL direct et fonctionnel si la source est en ligne.** (Si tu ne peux pas vérifier la fonctionnalité du lien, indique-le clairement).
+4.  **Une brève justification (2-3 phrases)** expliquant :
+    * Pourquoi cette source est particulièrement pertinente pour traiter le sujet de l'exposé (quels aspects du développement durable dans le secteur choisi elle aborde).
+    * Quels types d'informations concrètes (exemples d'actions d'entreprises, chiffres clés, analyses d'impact) les élèves peuvent y trouver.
+5.  **Un conseil de lecture critique** pour cette source (ex: "Attention à vérifier si les informations du site de l'entreprise sont auditées par un tiers", "Croiser cette étude de cas avec d'autres exemples pour éviter la généralisation").
+
+Assure-toi de proposer une variété de formats de sources (pas uniquement des articles textuels). Insiste dans une courte introduction sur l'importance de citer correctement leurs sources dans leur travail.</pre>
+<div class="prompt-details">
+<p><strong>Objectif :</strong> Guider les élèves de Première STMG (Management/SGN) dans leur recherche documentaire pour un exposé, en leur fournissant des sources fiables, récentes et diversifiées, avec des conseils critiques.</p>
+<p><strong>Résultat Attendu :</strong> Une liste commentée de 5 à 7 sources d'information (type, titre/auteur, URL, justification de pertinence, conseil de lecture critique pour chacune) et une introduction sur l'importance de citer les sources.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-12">
+<h2 class="section-title">Enseignements Clés de Notre Démarche</h2>
+<div class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md" role="alert">
+<p class="font-bold mb-2">Cette collaboration illustre :</p>
+<ul class="list-disc list-inside space-y-1">
+<li><i class="fas fa-comments mr-2"></i>La puissance du <strong>dialogue itératif</strong>.</li>
+<li><i class="fas fa-bullseye mr-2"></i>L'importance de la <strong>précision du prompt</strong>.</li>
+<li><i class="fas fa-chalkboard-teacher mr-2"></i>La nécessité de la <strong>contextualisation</strong>.</li>
+<li><i class="fas fa-hands-helping mr-2"></i>L'IA comme <strong>partenaire de conception pédagogique</strong>.</li>
+<li><i class="fas fa-pen-fancy mr-2"></i>L'importance d'<strong>expliciter l'implicite</strong>.</li>
+</ul>
+</div>
+</section>
+<footer class="text-center mt-12 pt-6 border-t border-gray-300">
+<p class="text-sm text-gray-500">© 2025 - Présentation pour la journée pédagogique du Lycée Passy Saint-Honoré.</p>
+</footer>
+</section></div>
+<script>
+        // Script pour la fonctionnalité accordéon des prompts individuels
+        const promptTriggers = document.querySelectorAll('.prompt-trigger');
+        promptTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const content = this.nextElementSibling; // Cible le div.prompt-content
+                const icon = this.querySelector('i.fas'); // Cible l'icône dans le bouton
+
+                if (content && content.classList.contains('prompt-content')) {
+                    content.classList.toggle('open');
+                    if (icon) {
+                        icon.classList.toggle('fa-chevron-down');
+                        icon.classList.toggle('fa-chevron-up');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
