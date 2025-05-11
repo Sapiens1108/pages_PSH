@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Démarche Collaborative IA &amp; Pédagogie STMG</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .step-card, .phase-card {
+            background-color: #f9fafb; /* Tailwind gray-50 */
+            border-left-width: 4px;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .step-card:hover, .phase-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .prompt-user {
+            background-color: #e0f2fe; /* Tailwind sky-100 */
+            border: 1px solid #bae6fd; /* Tailwind sky-200 */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .ai-action {
+            background-color: #f0fdf4; /* Tailwind green-50 */
+            border: 1px solid #bbf7d0; /* Tailwind green-200 */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .collapsible-content.open {
+            max-height: 3000px; /* Augmenté pour plus de contenu */
+        }
+        .section-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* semibold */
+            color: #1e3a8a; /* Tailwind blue-800 */
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3b82f6; /* Tailwind blue-500 */
+        }
+        .initial-doc {
+            background-color: #fffbeb; /* Tailwind amber-50 */
+            border: 1px solid #fde68a; /* Tailwind amber-200 */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1.5rem;
+        }
+        .prompt-item {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb; /* Tailwind gray-200 */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+        .prompt-title {
+            font-weight: 600;
+            color: #111827; /* Tailwind gray-900 */
+        }
+        .prompt-explanation {
+            font-size: 0.9em;
+            color: #4b5563; /* Tailwind gray-600 */
+            margin-top: 0.5rem;
+        }
+        .phase-title {
+             font-size: 1.25rem; /* text-xl */
+             font-weight: 600; /* semibold */
+             color: #166534; /* Tailwind green-800 */
+        }
+    </style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4 md:p-8">
+<div class="container mx-auto max-w-4xl bg-white shadow-xl rounded-lg p-6 md:p-10">
+<header class="text-center mb-10">
+<h1 class="text-3xl md:text-4xl font-bold text-blue-700">Notre Démarche Collaborative avec l'IA</h1>
+<p class="text-lg text-gray-600 mt-2">Illustrer la puissance de l'IA générative par un dialogue précis et itératif.</p>
+</header>
+<section class="mb-8">
+<h2 class="section-title">Point de Départ : Le Document Initial</h2>
+<div class="initial-doc">
+<p class="font-semibold text-amber-700"><i class="fas fa-file-pdf mr-2"></i>Document Source :</p>
+<p class="mt-1">"Guide pratique de l'IA à l'Inspé de l'académie de Créteil : Une approche technique, pédagogique et critique de son usage dans un cadre scolaire et universitaire" (<code>Guide_IA_Inspe_Creteil_03 2025.pdf</code>)</p>
+<p class="mt-2 text-sm text-gray-600">Ce document a servi de base pour extraire les premiers exemples de prompts et analyser les techniques d'ingénierie de prompt.</p>
+</div>
+</section>
+<section>
+<h2 class="section-title">Les Étapes Clés de Notre Collaboration</h2>
+<div class="step-card border-blue-500">
+<button class="w-full text-left collapsible-trigger">
+<h3 class="text-xl font-semibold text-blue-700 flex justify-between items-center">
+<span><i class="fas fa-search mr-2"></i>Étape 1 : Analyse du Document &amp; Extraction des Prompts Bruts</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h3>
+</button>
+<div class="collapsible-content open">
+<p class="text-gray-700 mt-2"><strong>Objectif :</strong> Explorer le guide initial pour en extraire des exemples concrets d'utilisation de l'IA et évaluer leur potentiel pédagogique.</p>
+<div class="prompt-user">
+<p class="font-semibold">Votre Prompt (corrigé) :</p>
+<pre>Extrais ton top 20 des prompts les plus qualitatifs listés dans ce document [Guide_IA_Inspe_Creteil_03 2025.pdf], avec ta note sur 1 à 5 étoiles (1, 1.5 .... 4, 4.5, 5) du prompt.
+- Imprime le prompt.
+- Rappelle son utilité.
+- Commente pourquoi tu mets cette note.
+Surpondère la précision s'il te plaît, car c'est à usage pédagogique.</pre>
+</div>
+<div class="ai-action">
+<p class="font-semibold text-green-700"><i class="fas fa-cogs mr-2"></i>Action de l'IA (Gemini) :</p>
+<ul class="list-disc list-inside mt-1 text-gray-700">
+<li>Lecture et analyse approfondie du document PDF fourni.</li>
+<li>Identification et extraction des différentes formulations de prompts.</li>
+<li>Pré-sélection des prompts les plus structurés ou illustrant des techniques spécifiques.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="step-card border-indigo-500">
+<button class="w-full text-left collapsible-trigger">
+<h3 class="text-xl font-semibold text-indigo-700 flex justify-between items-center">
+<span><i class="fas fa-star-half-alt mr-2"></i>Étape 2 : Sélection &amp; Évaluation des Prompts Généraux</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h3>
+</button>
+<div class="collapsible-content open">
+<p class="text-gray-700 mt-2"><strong>Objectif :</strong> Identifier et évaluer les prompts ayant une valeur pédagogique générale, extraits du document source.</p>
+<div class="prompt-user">
+<p class="font-semibold">Votre Demande :</p>
+<pre>(Implicite dans le prompt de l'Étape 1 : "Sélectionner les plus qualitatifs et les évaluer")</pre>
+</div>
+<div class="ai-action">
+<p class="font-semibold text-green-700"><i class="fas fa-cogs mr-2"></i>Action de l'IA (Gemini) :</p>
+<ul class="list-disc list-inside mt-1 text-gray-700">
+<li>Sélection des 20 prompts jugés les plus pertinents du document source.</li>
+<li>Attribution d'une note (1-5 étoiles) pour chaque prompt.</li>
+<li>Rédaction d'un commentaire justifiant la note (clarté, potentiel d'efficacité, pertinence pédagogique générale).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="step-card border-purple-500">
+<button class="w-full text-left collapsible-trigger">
+<h3 class="text-xl font-semibold text-purple-700 flex justify-between items-center">
+<span><i class="fas fa-users-cog mr-2"></i>Étape 3 : Adaptation Initiale pour la Filière STMG</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h3>
+</button>
+<div class="collapsible-content open">
+<p class="text-gray-700 mt-2"><strong>Objectif :</strong> Contextualiser les prompts généraux pour les rendre spécifiquement pertinents pour les enseignants et élèves de la filière STMG (1ère/Terminale).</p>
+<div class="prompt-user">
+<p class="font-semibold">Votre Prompt (corrigé) :</p>
+<pre>Super, merci beaucoup. Adapte tous ces prompts afin de les rendre pertinents et signifiants pour des professeurs et des classes en section STMG (1ère ou Terminale).</pre>
+</div>
+<div class="ai-action">
+<p class="font-semibold text-green-700"><i class="fas fa-cogs mr-2"></i>Action de l'IA (Gemini) :</p>
+<ul class="list-disc list-inside mt-1 text-gray-700">
+<li>Reprise des 20 prompts généraux sélectionnés.</li>
+<li>Modification du contenu (sujets, exemples, contextes, rôles de l'IA) pour alignement avec les disciplines STMG (Management, Éco, Droit, SGN).</li>
+<li>Conservation de la technique de "prompt engineering" tout en changeant son application thématique.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="step-card border-pink-500">
+<button class="w-full text-left collapsible-trigger">
+<h3 class="text-xl font-semibold text-pink-700 flex justify-between items-center">
+<span><i class="fas fa-tools mr-2"></i>Étape 4 : Raffinement Approfondi (Qualité 5/5 &amp; Focus 1ère STMG)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h3>
+</button>
+<div class="collapsible-content open">
+<p class="text-gray-700 mt-2"><strong>Objectif :</strong> Atteindre un niveau d'excellence pour chaque prompt, en augmentant la précision et en ciblant spécifiquement le niveau Première STMG.</p>
+<div class="prompt-user">
+<p class="font-semibold">Vos Prompts Successifs (corrigés) :</p>
+<pre>
+"C'est top ! Améliore ces prompts pour les faire passer à une note de 5 sur 5. Précise les modifications apportées."
+
+"Continue s'il te plaît." (Répété)
+
+"Continuons, n'oublie pas de surligner les prompts à proprement dit en gris clair s'il te plaît."
+
+"Continue s'il te plaît, focus-toi sur la 1ère STMG (on a presque que des Terminales) s'il te plaît."
+                        </pre>
+</div>
+<div class="ai-action">
+<p class="font-semibold text-green-700"><i class="fas fa-cogs mr-2"></i>Action de l'IA (Gemini) :</p>
+<ul class="list-disc list-inside mt-1 text-gray-700">
+<li>Revue systématique et itérative de chaque prompt STMG adapté.</li>
+<li>Augmentation de la précision (contexte, tâche, format de réponse).</li>
+<li>Ajout de contraintes et limites claires.</li>
+<li>Approfondissement du rôle assigné à l'IA.</li>
+<li>Renforcement des liens avec le programme de Première STMG.</li>
+<li>Pour chaque prompt amélioré : présentation de la version 5/5, analyse des forces, mise en exergue des caractères d'excellence, et liste des modifications.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="step-card border-teal-500">
+<button class="w-full text-left collapsible-trigger">
+<h3 class="text-xl font-semibold text-teal-700 flex justify-between items-center">
+<span><i class="fas fa-project-diagram mr-2"></i>Étape 5 : Organisation Chronologique des Prompts</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h3>
+</button>
+<div class="collapsible-content open">
+<p class="text-gray-700 mt-2"><strong>Objectif :</strong> Structurer l'ensemble des prompts produits dans une perspective d'utilisation pratique tout au long du cycle d'enseignement-apprentissage.</p>
+<div class="prompt-user">
+<p class="font-semibold">Votre Prompt (corrigé) :</p>
+<pre>Nous avons nos 20 prompts, donc nous sommes bien. Merci pour le super boulot ! Positionne ces 20 prompts sur le cycle / la chronologie du point de vue du cycle d'apprentissage et d'évaluation, s'il te plaît. Mets le titre + une explication explicite de chaque prompt, s'il te plaît = objectif et résultat attendu.</pre>
+</div>
+<div class="ai-action">
+<p class="font-semibold text-green-700"><i class="fas fa-cogs mr-2"></i>Action de l'IA (Gemini) :</p>
+<ul class="list-disc list-inside mt-1 text-gray-700">
+<li>Analyse des 20 prompts STMG (version 5/5) sous l'angle de leur fonction pédagogique.</li>
+<li>Définition d'un cycle d'apprentissage et d'évaluation type.</li>
+<li>Positionnement de chaque prompt au sein de ce cycle, avec explication de son objectif et du résultat attendu.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-12">
+<h2 class="section-title"><i class="fas fa-calendar-alt mr-2"></i>Chronologie Pédagogique des Prompts STMG</h2>
+<p class="text-gray-600 mb-6">Voici comment les 20 prompts améliorés (qualité 5/5, focus Première STMG) peuvent s'intégrer dans les différentes phases du cycle d'apprentissage et d'évaluation.</p>
+<div class="phase-card border-green-600">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center">
+<span><i class="fas fa-drafting-compass mr-2"></i>Phase 1 : Planification et Conception Pédagogique (Enseignant)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">1. Prompt 1 : Construction d'un Prompt Complet (Les 6 éléments) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Permettre à l'enseignant de structurer une demande très précise à l'IA pour créer une séquence pédagogique complète sur l'organisation du travail en SGN.<br/><strong>Résultat Attendu :</strong> Un plan de séquence détaillé et clé en main, généré par l'IA, respectant les 6 éléments définis.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">2. Prompt 2 : Conception d'une Séquence Pédagogique via Méta-Prompt - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Guider l'enseignant dans un processus de co-construction avec l'IA pour élaborer une séquence pédagogique extrêmement détaillée sur l'égalité en DGEMC.<br/><strong>Résultat Attendu :</strong> Trois fiches de séance complètes et détaillées, constituant une séquence pédagogique prête à l'emploi.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">3. Prompt 6 : Scénarisation Originale (Jeu de simulation de prise de décision managériale) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Aider l'enseignant à concevoir une séquence d'apprentissage engageante sous forme de jeu de simulation sur la prise de décision managériale en SGN.<br/><strong>Résultat Attendu :</strong> Une proposition détaillée pour un jeu de simulation en plusieurs phases, avec contexte, objectifs, déroulement, et modalités de débriefing.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">4. Prompt 13 : Création d'un Escape Game Pédagogique (Gestion des Stocks) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Fournir à l'enseignant un scénario complet pour un escape game pédagogique clé en main sur la gestion des stocks en SGN.<br/><strong>Résultat Attendu :</strong> Un document complet décrivant briefing, introduction, 4 énigmes (avec objectifs, tâches, solutions, indices, matériel), mécanisme de victoire et pistes pour le débriefing.</p>
+</div>
+</div>
+</div>
+<div class="phase-card border-cyan-600">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center" style="color: #0891b2;">
+<span><i class="fas fa-lightbulb mr-2"></i>Phase 2 : Introduction et Découverte des Concepts (Élève + Enseignant)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">5. Prompt 8 : Génération d'Exemples et d'Analogies (Communication Persuasive) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Aider l'enseignant à créer un support de cours pour expliquer la communication persuasive en SGN de manière claire et mémorable.<br/><strong>Résultat Attendu :</strong> Un texte structuré avec analogie, définition simplifiée, trois exemples analysés, et une mini-activité de réflexion.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">6. Prompt 16 : Explication d'un Concept avec Différents Niveaux de Difficulté (Amortissement Comptable) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Permettre à l'enseignant de disposer d'une ressource multi-niveaux pour expliquer l'amortissement comptable (SGN/Gestion-Finance).<br/><strong>Résultat Attendu :</strong> Une explication structurée en trois niveaux de difficulté, chacun avec définitions, exemples, et mini-quiz.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">7. Prompt 9 : Traduction Linguistique avec Nuance Contextuelle - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Aider l'enseignant à clarifier un terme technique en langue étrangère important en Économie ou Droit.<br/><strong>Résultat Attendu :</strong> La traduction française usuelle du terme et une explication concise de son rôle et fonctionnement.</p>
+</div>
+</div>
+</div>
+<div class="phase-card border-lime-600">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center" style="color: #4d7c0f;">
+<span><i class="fas fa-pencil-ruler mr-2"></i>Phase 3 : Appropriation et Entraînement (Élève, avec support Enseignant)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">8. Prompt 4 : Création de QCM Interactif avec Feedback Immédiat - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Fournir aux élèves un outil d'auto-évaluation dynamique pour réviser un thème de Droit.<br/><strong>Résultat Attendu :</strong> Une série de questions interactives avec feedback immédiat, score final, et bilan pédagogique personnalisé.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">9. Prompt 19 : Résumé d'Article d'Actualité Économique avec Objectif Spécifique - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Fournir aux élèves une synthèse accessible d'un article d'actualité économique, avec glossaire et questions de discussion.<br/><strong>Résultat Attendu :</strong> Un résumé analytique, un glossaire de termes économiques, et deux questions de discussion.</p>
+</div>
+</div>
+</div>
+<div class="phase-card border-orange-500">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center" style="color: #c2410c;">
+<span><i class="fas fa-laptop-code mr-2"></i>Phase 4 : Application et Création (Élève)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">10. Prompt 3 : Remplissage de Matrices (Templates) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Fournir un modèle d'analyse d'organisation (SGN) rempli par l'IA, servant d'exemple ou de base pour les élèves.<br/><strong>Résultat Attendu :</strong> La matrice d'analyse complétée pour une organisation locale, avec pistes de questions et activités.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">11. Prompt 14 : Développement d'une Narration Interactive (Parcours Client) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Permettre aux élèves de comprendre de manière immersive le parcours client digital omnicanal (SGN/Marketing).<br/><strong>Résultat Attendu :</strong> Le script d'une histoire interactive avec étapes, choix, conséquences, et identification des points de contact.</p>
+</div>
+</div>
+</div>
+<div class="phase-card border-red-500">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center" style="color: #b91c1c;">
+<span><i class="fas fa-tasks mr-2"></i>Phase 5 : Évaluation Formative et Sommative (Enseignant + Élève)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">12. Prompt 5 : Conception d'Évaluation Sommative (Type Épreuve Commune) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Aider l'enseignant à créer un sujet d'évaluation sommative complet en Économie.<br/><strong>Résultat Attendu :</strong> Une proposition de sujet (2h) avec dossier documentaire, questions, question problématisée, barème et note à l'élève.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">13. Prompt 17 : Création d'une Grille d'Évaluation pour un Oral de Projet - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Fournir une grille d'évaluation détaillée pour les oraux de projets des élèves.<br/><strong>Résultat Attendu :</strong> Une grille sur 20 points avec domaines de compétences, indicateurs et 4 niveaux de maîtrise.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">14. Prompt 12 : Vérification de la Cohérence d'une Analyse (Étude de Gestion) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Obtenir un feedback constructif sur une analyse d'élève ou permettre une auto-évaluation.<br/><strong>Résultat Attendu :</strong> Un feedback identifiant points forts/faibles, suggestions d'amélioration, évaluation de la conclusion, et question d'approfondissement.</p>
+</div>
+</div>
+</div>
+<div class="phase-card border-yellow-500">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center" style="color: #a16207;">
+<span><i class="fas fa-user-graduate mr-2"></i>Phase 6 : Remédiation et Approfondissement (Élève + Enseignant)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">15. Prompt 7 : Adaptation de Contenus pour Besoins Spécifiques (Droit) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Transformer un texte juridique dense en ressource accessible pour élèves DYS et allophones.<br/><strong>Résultat Attendu :</strong> Texte simplifié, recommandations visuelles, carte mentale, script audio court et lexique traduit.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">16. Prompt 18 : Adaptation d'Exercices (Calcul de Coûts) pour Élève en Difficulté - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Fournir des exercices progressifs et autocorrectifs sur le calcul des coûts en SGN.<br/><strong>Résultat Attendu :</strong> Trois exercices avec énoncés, corrections détaillées (incluant erreurs typiques et rappels).</p>
+</div>
+</div>
+</div>
+<div class="phase-card border-fuchsia-600">
+<button class="w-full text-left collapsible-trigger">
+<h4 class="phase-title flex justify-between items-center" style="color: #a21caf;">
+<span><i class="fas fa-flag-checkered mr-2"></i>Phase 7 : Préparation aux Épreuves (Introduction en 1ère STMG)</span>
+<i class="fas fa-chevron-down transform transition-transform"></i>
+</h4>
+</button>
+<div class="collapsible-content open">
+<div class="prompt-item">
+<p class="prompt-title">17. Prompt 10 : Création d'un Plan de Révision Détaillé - 1ère STMG (pour épreuve de fin d'année)</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Aider l'élève à structurer ses révisions pour une épreuve importante de fin de Première STMG.<br/><strong>Résultat Attendu :</strong> Un plan de révision hebdomadaire détaillé, avec thèmes, activités et objectifs.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">18. Prompt 11 : Aide à la Structuration d'un Oral (type entraînement Grand Oral) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Aider un élève à structurer son argumentation pour un oral important.<br/><strong>Résultat Attendu :</strong> Proposition d'accroche, problématique, plan détaillé, pistes pour conclusion et questions types du jury.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">19. Prompt 15 : Formulation d'une Question Problématisée (Économie) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Entraîner les élèves à la dissertation ou à la réflexion argumentée en Économie.<br/><strong>Résultat Attendu :</strong> Une question problématisée inédite, avec justification et pistes de développement.</p>
+</div>
+<div class="prompt-item">
+<p class="prompt-title">20. Prompt 20 : Demande de Bibliographie/Sitographie pour Exposé (DD en Entreprise) - 1ère STMG</p>
+<p class="prompt-explanation"><strong>Objectif :</strong> Guider les élèves dans leur recherche documentaire pour un exposé en Management/SGN.<br/><strong>Résultat Attendu :</strong> Une liste commentée de 5-7 sources fiables, avec justification et conseil de lecture critique.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-12">
+<h2 class="section-title">Enseignements Clés de Notre Démarche</h2>
+<div class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md" role="alert">
+<p class="font-bold mb-2">Cette collaboration illustre :</p>
+<ul class="list-disc list-inside space-y-1">
+<li><i class="fas fa-comments mr-2"></i>La puissance du <strong>dialogue itératif</strong> : la qualité s'améliore avec chaque ajustement.</li>
+<li><i class="fas fa-bullseye mr-2"></i>L'importance de la <strong>précision du prompt</strong> ("Prompt Engineering") : des demandes claires mènent à des résultats pertinents.</li>
+<li><i class="fas fa-chalkboard-teacher mr-2"></i>La nécessité de la <strong>contextualisation</strong> : adapter au public (Première STMG) et aux disciplines est crucial.</li>
+<li><i class="fas fa-hands-helping mr-2"></i>L'IA comme <strong>partenaire de conception pédagogique</strong> : un assistant pour innover et différencier.</li>
+<li><i class="fas fa-pen-fancy mr-2"></i>L'importance d'<strong>expliciter l'implicite</strong> : ce qui est évident pour l'enseignant doit être formulé pour l'IA.</li>
+</ul>
+<p class="mt-3">En maîtrisant l'art du "prompting" et avec une vision pédagogique claire, l'IA générative devient un allié précieux pour l'enseignement.</p>
+</div>
+</section>
+<footer class="text-center mt-12 pt-6 border-t border-gray-300">
+<p class="text-sm text-gray-500">© 2025 - Présentation pour la journée pédagogique du Lycée Passy Saint-Honoré.</p>
+</footer>
+</div>
+<script>
+        // Script pour la fonctionnalité accordéon
+        const triggers = document.querySelectorAll('.collapsible-trigger');
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.fa-chevron-down, .fa-chevron-up');
+                
+                content.classList.toggle('open');
+                
+                if (content.classList.contains('open')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
